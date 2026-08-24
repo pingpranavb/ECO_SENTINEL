@@ -1,0 +1,322 @@
+# 🔧 ECO-SENTINEL — Components
+
+## 🧠 Main Computing
+
+| Component                            | Qty | Purpose                                                                                      |
+| ------------------------------------ | --: | -------------------------------------------------------------------------------------------- |
+| **Raspberry Pi 4 Model B — 4GB RAM** |   1 | Main computer; runs AI detection, OpenCV, Flask dashboard, EAP calculations and system logic |
+| **Arduino Uno R3**                   |   1 | Handles sensors, servos and low-level hardware control                                       |
+| **MicroSD Card**                     |   1 | Raspberry Pi OS, AI model, software and project data                                         |
+
+The Raspberry Pi 4 uses a quad-core Cortex-A72 processor and provides the CSI camera interface, GPIO, USB and networking required by the system. The Arduino Uno uses the ATmega328P microcontroller.
+
+---
+
+# 📷 Vision & AI
+
+| Component                      | Qty | Purpose                                               |
+| ------------------------------ | --: | ----------------------------------------------------- |
+| **Raspberry Pi Camera Module** |   1 | Live video input for AI litter detection              |
+| **Pan/Scanning Servo**         |   1 | Rotates camera for radar-style environmental scanning |
+| **Camera Mount**               |   1 | Holds camera on scanning mechanism                    |
+
+### AI Software
+
+* YOLOv11n custom litter-detection model
+* NCNN optimized model
+* OpenCV
+* Python
+* Custom waste-classification logic
+* Ground-zone detection
+
+---
+
+# 🌫️ Environmental Sensors
+
+| Component                   | Qty | Purpose                              |
+| --------------------------- | --: | ------------------------------------ |
+| **MQ-135 Gas Sensor**       |   1 | General air-quality / gas monitoring |
+| **MQ-2 Gas & Smoke Sensor** |   1 | Smoke and combustible-gas detection  |
+| **DHT11**                   |   1 | Temperature and humidity monitoring  |
+
+These sensors provide the environmental data used alongside the computer-vision results.
+
+---
+
+# 🚨 Obstacle / Proximity Detection
+
+| Component               |   Qty | Purpose                                              |
+| ----------------------- | ----: | ---------------------------------------------------- |
+| **IR Obstacle Sensors** | **3** | Detect nearby obstacles and objects around the rover |
+
+The three IR sensors provide short-range environmental awareness around the prototype.
+
+---
+
+# 🗑️ Waste Collection Mechanism
+
+| Component                   |   Qty | Purpose                                              |
+| --------------------------- | ----: | ---------------------------------------------------- |
+| **Waste Scooper**           |     1 | Physically collects detected litter                  |
+| **Servo Motor**             |    1+ | Operates the scooper mechanism                       |
+| **Scooper Mount / Linkage** | 1 set | Transfers servo movement to the collection mechanism |
+
+This gives ECO-SENTINEL a physical-action layer rather than making it purely a monitoring system:
+
+**Detect → Analyse → Collect**
+
+---
+
+# 🚙 Rover Platform
+
+| Component                | Qty | Purpose                                      |
+| ------------------------ | --: | -------------------------------------------- |
+| **Metal Rover Chassis**  |   1 | Main structural platform                     |
+| **12V DC Geared Motors** |   4 | Rover movement                               |
+| **Wheels**               |   4 | Mobility                                     |
+| **Motor Mounts**         |   4 | Secure motors to chassis                     |
+| **Two-Level Structure**  |   1 | Separates electronics and mechanical systems |
+
+---
+
+# 🎮 Manual Driving System
+
+| Component                              | Qty | Purpose                            |
+| -------------------------------------- | --: | ---------------------------------- |
+| **FlySky FS-i6 6-Channel Transmitter** |   1 | Wireless manual rover control      |
+| **FlySky Receiver**                    |   1 | Receives commands from transmitter |
+| **Brushed ESC / Motor Controller**     |   1 | Controls drive motors              |
+| **Associated Motor Wiring**            |   — | Power and motor connections        |
+
+The rover is therefore **operator-controlled**, while its environmental detection and analysis systems operate intelligently onboard.
+
+---
+
+# 🖥️ User Interface
+
+| Component                |      Qty | Purpose                          |
+| ------------------------ | -------: | -------------------------------- |
+| **7-inch Display**       |        1 | Onboard environmental dashboard  |
+| **HDMI / Display Cable** |        1 | Connects display to Raspberry Pi |
+| **Phone / Laptop**       | Optional | Remote access to Flask dashboard |
+
+The dashboard provides:
+
+* Live camera
+* AI detections
+* Waste count
+* Waste categories
+* Air-quality information
+* Smoke/gas readings
+* Temperature
+* Humidity
+* EAP score
+* System status
+* Session statistics
+
+---
+
+# 🔌 Communication
+
+### Raspberry Pi ↔ Arduino
+
+Communication is performed through:
+
+**UART Serial — 9600 baud**
+
+The Arduino sends sensor information to the Raspberry Pi, while the Raspberry Pi can send hardware commands back to the Arduino.
+
+---
+
+# ⚡ Power System
+
+The prototype requires separate consideration for the computing and high-current motor systems.
+
+Components include:
+
+* Raspberry Pi power supply
+* Motor/rover battery
+* Arduino power
+* ESC power connection
+* Power distribution wiring
+* USB cables
+* Jumper wires
+* Connectors
+
+The Raspberry Pi 4 itself is designed around a **5V/3A USB-C supply**.
+
+---
+
+# 🔗 Electronics & Wiring
+
+Additional components used to assemble the electronics include:
+
+* Male-to-male jumper wires
+* Male-to-female jumper wires
+* Female-to-female jumper wires
+* Breadboard / prototyping connections
+* USB cable for Arduino
+* USB-C power cable for Raspberry Pi
+* Servo cables
+* Sensor wiring
+* Serial/UART wiring
+* Power connectors
+* Motor wiring
+* Cable ties / cable management
+
+---
+
+# 💻 Software Components
+
+## Raspberry Pi
+
+* Raspberry Pi OS
+* Python 3
+* OpenCV
+* YOLOv11n
+* NCNN
+* Flask
+* PySerial
+* HTML
+* CSS
+* JavaScript
+
+## Arduino
+
+* Arduino IDE
+* Arduino C/C++
+* Servo library
+* Sensor-reading code
+* UART serial communication
+
+---
+
+# 🧠 AI Model
+
+### Custom Litter Detection Model
+
+**Architecture:** YOLOv11n
+**Deployment:** NCNN
+**Dataset:** ~1,900 TACO litter images
+**Model Size:** ~5 MB
+**Raspberry Pi 4 Performance:** ~6–7 FPS
+**mAP50:** ~70%+
+
+### Detection Classes
+
+* Plastic
+* Paper
+* Metal
+* Glass
+* Cardboard
+* Other waste
+
+---
+
+# 🧩 Complete System
+
+```text
+                        ECO-SENTINEL
+                              │
+             ┌────────────────┴────────────────┐
+             │                                 │
+       Raspberry Pi 4                    Arduino Uno
+             │                                 │
+     ┌───────┼────────┐              ┌─────────┼─────────┐
+     │       │        │              │         │         │
+   Camera   AI     Dashboard       MQ-135     MQ-2      DHT11
+     │
+   YOLO
+     │
+Waste Detection
+     │
+Ground-Zone Logic
+     │
+     └───────────────┐
+                     ▼
+              EAP Calculation
+                     │
+                     ▼
+            Environmental Data
+                     │
+             ┌───────┴───────┐
+             ▼               ▼
+        Live Dashboard     Report
+
+
+             PHYSICAL SYSTEM
+                    │
+       ┌────────────┼────────────┐
+       ▼            ▼            ▼
+   4× Motors    Camera Servo   Scooper
+       │
+   Brushed ESC
+       │
+ FlySky Receiver
+       │
+   FS-i6 Remote
+```
+
+---
+
+# 📦 Main Hardware Summary
+
+**Computing**
+
+* 1× Raspberry Pi 4 Model B — 4GB
+* 1× Arduino Uno R3
+* 1× MicroSD card
+
+**Vision**
+
+* 1× Raspberry Pi Camera
+* 1× Camera scanning servo
+
+**Environmental Monitoring**
+
+* 1× MQ-135
+* 1× MQ-2
+* 1× DHT11
+* 3× IR obstacle sensors
+
+**Robotics**
+
+* 4× 12V geared DC motors
+* 4× wheels
+* 1× metal chassis
+* 1× waste scooper
+* Servo motor(s)
+* Camera pan mechanism
+
+**Control**
+
+* 1× FlySky FS-i6 transmitter
+* 1× FlySky receiver
+* 1× brushed ESC / motor controller
+
+**Interface**
+
+* 1× 7-inch display
+
+**Supporting Hardware**
+
+* Battery/power system
+* Jumper wires
+* USB cables
+* Connectors
+* Motor wiring
+* Servo wiring
+* Mounting hardware
+* Two-level structural frame
+
+---
+
+## 🌱 Hardware Philosophy
+
+ECO-SENTINEL intentionally combines **general-purpose computing, inexpensive microcontrollers, sensors and conventional robotic hardware**.
+
+The prototype isn't meant to demonstrate that every municipality needs to purchase a completely new robot.
+
+It demonstrates that these technologies can potentially be integrated into an **existing municipal vehicle**:
+
+**Existing Vehicle + Edge AI + Camera + Sensors + Dashboard = Intelligent Environmental Monitoring Vehicle**
